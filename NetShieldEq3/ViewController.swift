@@ -25,6 +25,19 @@ class ViewController: UIViewController {
             super.viewDidLoad()
             errorRegistroLabel.text = ""
             passwordTextField.isSecureTextEntry = true
+        
+        
+        // Crear el botón del ojo
+            let eyeButton = UIButton(type: .system)
+            eyeButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+            eyeButton.tintColor = .gray
+            eyeButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            eyeButton.addTarget(self, action: #selector(togglePassword), for: .touchUpInside)
+            
+            // Asignarlo como rightView del campo de contraseña
+            passwordTextField.rightView = eyeButton
+            passwordTextField.rightViewMode = .always
+        
         }
         
         // Acción del botón Registrar
@@ -75,5 +88,12 @@ class ViewController: UIViewController {
     //Borrar mensaje al empezar a escribir en un campo
     @IBAction func campoEditado(_ sender: UITextField){
         errorRegistroLabel.text = ""
+    }
+    
+    @objc func togglePassword(_ sender: UIButton) {
+        passwordTextField.isSecureTextEntry.toggle()
+        
+        let icono = passwordTextField.isSecureTextEntry ? "eye.slash" : "eye"
+        sender.setImage(UIImage(systemName: icono), for: .normal)
     }
 }
