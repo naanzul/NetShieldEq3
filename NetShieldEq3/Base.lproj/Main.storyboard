@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="a562821e-6f38-4147-a901-68a0cecf5a39" translatesAutoresizingMaskIntoConstraints="NO" id="aQE-iG-o6c">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="a562821e-6f38-4147-a901-68a0cecf5a39" translatesAutoresizingMaskIntoConstraints="NO" id="aQE-iG-o6c">
                                 <rect key="frame" x="127" y="103" width="139" height="85"/>
                                 <color key="tintColor" red="0.2626953125" green="0.059747408396978133" blue="0.089826463474982035" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -111,6 +111,9 @@
                                             <color key="baseForegroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
                                             <color key="baseBackgroundColor" red="0.03674316406" green="0.042877204719999999" blue="0.2624511719" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="IniciarSesion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Peq-DY-Evk"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No tienes cuenta?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iuq-Nf-cen">
                                         <rect key="frame" x="38" y="463" width="124" height="18"/>
@@ -133,11 +136,35 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.03530883789" green="0.043151862919999999" blue="0.2626953125" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aQE-iG-o6c" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="XQ4-Uh-f2N"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="email" destination="jGA-Vf-ezq" id="QfS-9J-mLA"/>
+                        <outlet property="password" destination="fv1-GP-ukf" id="CRI-GP-F65"/>
+                        <segue destination="ndi-xD-H9a" kind="show" identifier="irAInicio" id="cPG-rQ-GG2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="138.1679389312977" y="130.98591549295776"/>
+        </scene>
+        <!--HomeViewController-->
+        <scene sceneID="ZMJ-uL-9h7">
+            <objects>
+                <viewController title="HomeViewController" id="ndi-xD-H9a" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EL3-jZ-LeP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="RDR-R5-hz2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Kfe-R7-lNt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s8d-j7-sZr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="949" y="131"/>
         </scene>
     </scenes>
     <resources>
@@ -152,6 +179,9 @@
             <color red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
