@@ -20,6 +20,7 @@ NetShield es una aplicación móvil de ciberseguridad que permite a los usuarios
 
 - [Flor Blacina] Hacer la vista Login y darle funcionalidad al boton -Iniciar Sesion-
 - [Ximena Itzel] Hacer la vista Registro de usuario, darle funcionalidad al botón -Registrar- agregar un botón para visualizar y ocultar el password y mostrar mensajes de error cuando los campos estén vacíos o no se el formato adecuado.
+- [Jose Leonardo Salinas] Hacer la creacion de reporte para que lo usuarios hagan su formato y como deben de realizarlo brindando las herramientas necesarias para el usuario
 - [Randy Angelo] Hacer la vista Consulta de URL, dar funcionalidad al boton
 - [ ] Home / pantalla principal
 - [ ] Nuevo reporte (URL + evidencia + subcategoría)
@@ -27,6 +28,7 @@ NetShield es una aplicación móvil de ciberseguridad que permite a los usuarios
 - [ ] Alertas (feed de reportes aprobados)
 - [ ] Estadísticas (dashboard)
 - [ ] Perfil de usuario
+  
 
 ## Convención de nombres de ramas
 
@@ -36,6 +38,7 @@ main                → rama principal
 feature/login   → Flor
 feature/registro → Ximena
 feature/ConsultaURL1.1 → Randy
+feature/creadordereporte → Leonardo
 fix/<nombre-corto>       → corrección de bug, ej. fix/crash-nuevo-reporte
 chore/<nombre-corto>     → tareas de mantenimiento (configuración, dependencias)
 ```
