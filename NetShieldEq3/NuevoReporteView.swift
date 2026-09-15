@@ -12,6 +12,23 @@
 //  Pantalla "Nuevo reporte" reconstruida desde el diseño de Figma.
 //
 
+//
+//  ImagePicker.swift
+//  NetShieldEq3
+//
+//  Envuelve PHPickerViewController (UIKit) para usarlo dentro de SwiftUI.
+//
+
+//
+//  NuevoReporteView.swift
+//  NetShieldEq3
+//
+//  Pantalla "Nuevo reporte" reconstruida desde el diseño de Figma.
+//  Incluye: logo real, validación de URL, selector de imagen real
+//  (PHPickerViewController) y botón de envío deshabilitado hasta
+//  que el formulario sea válido.
+//
+
 import SwiftUI
 
 // MARK: - Modelo simple de subcategoría (para los "chips")
@@ -27,8 +44,7 @@ struct Subcategoria: Identifiable {
 
 struct NuevoReporteView: View {
 
-    // Estados del formulario (equivalen a lo que en UIKit
-    // hubieras guardado en variables del ViewController)
+    // Estados del formulario
     @State private var url: String = ""
     @State private var descripcion: String = ""
     @State private var subcategoriaSeleccionada: String? = nil
@@ -44,16 +60,26 @@ struct NuevoReporteView: View {
         Subcategoria(nombre: "Otro", icono: "ellipsis", color: .gray.opacity(0.3))
     ]
 
-    // Layout de 2 columnas para los chips (como en tu Figma)
+    // Layout de 2 columnas para los chips
     let columnas = [GridItem(.flexible()), GridItem(.flexible())]
+
+    // MARK: - Validación
+
+    private var urlEsValida: Bool {
+        URLValidator.esValida(url)
+    }
+    private var formularioValido: Bool {
+        !url.isEmpty && urlEsValida && subcategoriaSeleccionada != nil
+    }
+    
 
     var body: some View {
         VStack(spacing: 0) {
 
-            // ---------- HEADER (equivalente a tu "Header View" en UIKit) ----------
+            // ---------- HEADER ----------
             headerView
 
-            // ---------- CONTENIDO CON SCROLL (equivalente a tu ScrollView + Card) ----------
+            // ---------- CONTENIDO CON SCROLL ----------
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
 
@@ -80,7 +106,7 @@ struct NuevoReporteView: View {
         .navigationBarHidden(true)
     }
 
-    // MARK: - Header
+    // MARK: - Header (con logo real)
 
     private var headerView: some View {
         HStack {
@@ -103,19 +129,19 @@ struct NuevoReporteView: View {
 
             Spacer()
 
-            // Reemplaza "shield.checkerboard" por el nombre de tu logo
-            // real una vez que lo importes a Assets.xcassets
-            Image(systemName: "shield.checkerboard")
+            // Logo real desde Assets.xcassets — ajusta el nombre si
+            // en tu proyecto el asset se llama distinto.
+            Image("NetShieldLogo")
                 .resizable()
+                .scaledToFit()
                 .frame(width: 32, height: 32)
-                .foregroundColor(.orange)
         }
         .padding(.horizontal, 20)
         .padding(.top, 8)
         .padding(.bottom, 20)
     }
 
-    // MARK: - Campo URL
+    // MARK: - Campo URL (con validación)
 
     private var campoURL: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -132,10 +158,20 @@ struct NuevoReporteView: View {
             .padding(12)
             .background(Color.white)
             .cornerRadius(12)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(urlEsValida ? Color.clear : Color.red, lineWidth: 1.5)
+            )
 
-            Text("Ej: https://banco-falso.com · http://sorteo-premio.xyz")
-                .font(.caption)
-                .foregroundColor(.gray)
+            if !urlEsValida {
+                Text("Ingresa una URL válida (ej: https://sitio.com)")
+                    .font(.caption)
+                    .foregroundColor(.red)
+            } else {
+                Text("Ej: https://banco-falso.com · http://sorteo-premio.xyz")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
         }
     }
 
@@ -174,7 +210,7 @@ struct NuevoReporteView: View {
         }
     }
 
-    // MARK: - Zona de evidencia (imagen)
+    // MARK: - Zona de evidencia (selector de imagen real)
 
     private var zonaEvidencia: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -207,10 +243,7 @@ struct NuevoReporteView: View {
                     )
             }
             .sheet(isPresented: $mostrarSelectorImagen) {
-                // Aquí conectarías PHPickerViewController vía
-                // UIViewControllerRepresentable si necesitas selector real
-                Text("Selector de imagen (pendiente de implementar)")
-                    .padding()
+                ImagePicker(imagenSeleccionada: $imagenEvidencia)
             }
         }
     }
@@ -234,8 +267,10 @@ struct NuevoReporteView: View {
         }
     }
 
-    // MARK: - Botón enviar
+    // MARK: - Botón enviar (deshabilitado si el formulario es inválido)
 
+    /// Botón de envío final. Permanece deshabilitado (gris) mientras
+    /// `formularioValido` sea `false`, para evitar reportes incompletos.
     private var botonEnviar: some View {
         Button {
             enviarReporte()
@@ -247,10 +282,11 @@ struct NuevoReporteView: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
-            .background(Color.orange)
+            .background(formularioValido ? Color.orange : Color.gray.opacity(0.4))
             .foregroundColor(.white)
             .cornerRadius(16)
         }
+        .disabled(!formularioValido)
         .padding(.horizontal, 20)
         .padding(.bottom, 20)
         .padding(.top, 10)
