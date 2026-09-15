@@ -53,9 +53,8 @@ struct ConsultarURLView: View {
         "banco-seguro-mx.phishi", "promo-envios.mx", "bbva-actualiza.xyz", "gooogle.com.mx"
     ]
 
-    // Paleta
-    private let colorFondoInicio = Color(red: 0.04, green: 0.05, blue: 0.16)
-    private let colorFondoFin = Color(red: 0.08, green: 0.09, blue: 0.26)
+    // Paleta — fondo plano, como en el Figma
+    private let colorFondo = Color(red: 0.05, green: 0.06, blue: 0.20)
     private let colorNaranjaClaro = Color(red: 1.00, green: 0.72, blue: 0.20)
     private let colorNaranjaOscuro = Color(red: 0.93, green: 0.55, blue: 0.05)
 
@@ -66,9 +65,7 @@ struct ConsultarURLView: View {
 
     var body: some View {
         ZStack {
-            LinearGradient(colors: [colorFondoInicio, colorFondoFin],
-                            startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
+            colorFondo.ignoresSafeArea()
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
@@ -108,7 +105,7 @@ struct ConsultarURLView: View {
                     .padding(.horizontal)
                     .padding(.top, 6)
 
-                    // Campo de búsqueda + botón verificar (sin cambios de tamaño/posición)
+                    // Campo de búsqueda + botón verificar
                     VStack(spacing: 6) {
                         HStack(spacing: 6) {
                             Image(systemName: "magnifyingglass")
@@ -154,7 +151,7 @@ struct ConsultarURLView: View {
                     }
                     .padding(.horizontal)
 
-                    // Resultado de la verificación (sin cambios de tamaño/posición)
+                    // Resultado de la verificación
                     if let resultado = resultadoActual {
                         HStack(spacing: 8) {
                             Image(systemName: resultado.estado.icono)
@@ -212,17 +209,11 @@ struct ConsultarURLView: View {
 
                     Spacer(minLength: 12)
 
-                    // Búsquedas recientes — más angosta y centrada
+                    // Búsquedas recientes — sin contador, más angosta y centrada
                     VStack(alignment: .leading, spacing: 6) {
-                        HStack {
-                            Text("Búsquedas recientes")
-                                .font(.system(size: 12, weight: .bold))
-                                .foregroundColor(.white)
-                            Spacer()
-                            Text("\(busquedasRecientes.count)")
-                                .font(.system(size: 9, weight: .semibold))
-                                .foregroundColor(.white.opacity(0.5))
-                        }
+                        Text("Búsquedas recientes")
+                            .font(.system(size: 12, weight: .bold))
+                            .foregroundColor(.white)
 
                         VStack(spacing: 5) {
                             ForEach(busquedasRecientes) { item in
