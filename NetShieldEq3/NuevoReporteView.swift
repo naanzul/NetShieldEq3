@@ -66,14 +66,12 @@ struct NuevoReporteView: View {
     // MARK: - Validación
 
     private var urlEsValida: Bool {
-        guard !url.isEmpty else { return true }   // vacío no marca error todavía
-        guard let componentes = URLComponents(string: url) else { return false }
-        return componentes.scheme != nil && componentes.host != nil
+        URLValidator.esValida(url)
     }
-
     private var formularioValido: Bool {
         !url.isEmpty && urlEsValida && subcategoriaSeleccionada != nil
     }
+    
 
     var body: some View {
         VStack(spacing: 0) {
@@ -271,6 +269,8 @@ struct NuevoReporteView: View {
 
     // MARK: - Botón enviar (deshabilitado si el formulario es inválido)
 
+    /// Botón de envío final. Permanece deshabilitado (gris) mientras
+    /// `formularioValido` sea `false`, para evitar reportes incompletos.
     private var botonEnviar: some View {
         Button {
             enviarReporte()
