@@ -35,7 +35,7 @@ main                → rama principal
 
 feature/login   → Flor
 feature/registro → Ximena
-feature/ConsultaURL1.1
+feature/ConsultaURL1.1 → Randy
 fix/<nombre-corto>       → corrección de bug, ej. fix/crash-nuevo-reporte
 chore/<nombre-corto>     → tareas de mantenimiento (configuración, dependencias)
 ```
