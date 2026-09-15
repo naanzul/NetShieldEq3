@@ -19,7 +19,7 @@ NetShield es una aplicación móvil de ciberseguridad que permite a los usuarios
 ## Funcionalidades asignadas (detalle)
 
 - [Flor Blacina] Hacer la vista Login y darle funcionalidad al boton -Iniciar Sesion-
-- [Ximena Itzel] Hacer la vista Registro de usuario y darle funcionalidad al boton -Registrar- y vinculo -Iniciar Sesion-
+- [Ximena Itzel] Hacer la vista Registro de usuario, darle funcionalidad al botón -Registrar- agregar un botón para visualizar y ocultar el password y mostrar mensajes de error cuando los campos estén vacíos o no se el formato adecuado.
 - [ ] Home / pantalla principal
 - [ ] Nuevo reporte (URL + evidencia + subcategoría)
 - [ ] Consultar URL

@@ -68,8 +68,20 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="w7r-Lj-G2C" id="zNL-oY-8vn"/>
+                        <outlet property="errorRegistroLabel" destination="3iN-m4-aCu" id="iXs-OU-nn6"/>
+                        <outlet property="paisTextField" destination="bcO-ZE-nE9" id="CxC-uJ-nfO"/>
+                        <outlet property="passwordTextField" destination="XY6-Tr-cLk" id="ypr-D6-0bz"/>
+                        <outlet property="usuarioTextField" destination="H8Z-re-HR3" id="fi4-VC-YQc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="MQu-sO-B9H">
+                    <connections>
+                        <action selector="hacerTapVista:" destination="BYZ-38-t0r" id="EL9-sB-JkR"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="125.95419847328243" y="105.63380281690141"/>
         </scene>
